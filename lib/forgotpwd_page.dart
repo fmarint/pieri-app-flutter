@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pieri_app/src/widgets/wave.dart';
 
 class ForgotpwdPage extends StatefulWidget {
   const ForgotpwdPage({super.key});
