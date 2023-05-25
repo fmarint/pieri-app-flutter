@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pieri_app/forgotpass_page.dart';
+import 'package:pieri_app/forgotpwd_page.dart';
 import 'package:pieri_app/home_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -13,6 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   final TextEditingController _userController = TextEditingController();
+  final Color _colorRedPp = Color.fromARGB(206, 147, 19, 19);
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +39,10 @@ class _LoginPageState extends State<LoginPage> {
                 color: const Color.fromARGB(255, 255, 255, 255),
                 child: Column(
                   children: [
-                    const SizedBox(
+                     SizedBox(
                       height: 60,
                       child: Padding(
-                        padding: EdgeInsets.only(top: 20.0),
+                        padding:const EdgeInsets.only(top: 20.0),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                             Text(
                               "Hola!",
                               style: TextStyle(
-                                color: Color.fromARGB(206, 147, 19, 19),
+                                color: _colorRedPp,
                                 fontSize: 26,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -57,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                             Text(
                               "  Ingrese sus datos para iniciar sesion.",
                               style: TextStyle(
-                                color: Color.fromARGB(206, 163, 30, 30),
+                                color: _colorRedPp,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -137,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ForgotpasPage(),
+                            builder: (context) => const ForgotpwdPage(),
                           ),
                         );
                       },

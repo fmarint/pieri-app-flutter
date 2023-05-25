@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pieri_app/src/widgets/wave.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           backgroundColor: _colorRedPp,
           title: const Text("Home"),
-          elevation: 5.0,
+          elevation: 0.0,
           actions: [
             IconButton(
               onPressed: () {},
@@ -91,11 +92,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        body: const SafeArea(
-          child: Center(
-            child: Text("Main Page"),
-          ),
-        ),
+        body:const Wave() ,
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -112,7 +109,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
           // currentIndex: _selectedIndex,
-          selectedItemColor: const Color.fromARGB(255, 179, 41, 36),
+          selectedItemColor: _colorRedPp,
           onTap: (index) {},
         ),
       ),
