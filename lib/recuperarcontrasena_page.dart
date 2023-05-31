@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:pieri_app/revisarcorreo_page.dart';
 
-class ForgotpwdPage extends StatefulWidget {
-  const ForgotpwdPage({super.key});
+class RecuperarContrasenaPage extends StatefulWidget {
+  const RecuperarContrasenaPage({super.key});
 
   @override
-  State<ForgotpwdPage> createState() => _ForgotpwdPageState();
+  State<RecuperarContrasenaPage> createState() =>
+      _RecuperarContrasenaPageState();
 }
 
-class _ForgotpwdPageState extends State<ForgotpwdPage> {
+class _RecuperarContrasenaPageState extends State<RecuperarContrasenaPage> {
   final TextEditingController _userController = TextEditingController();
   // final Color _colorRedPp = const Color.fromRGBO(173, 20, 56, 1.0);
-  final Color _colorRedPp = const Color.fromRGBO(95, 153, 119, 1.0);
+  // final Color _colorRedPp = const Color.fromRGBO(95, 153, 119, 1.0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: AppBar(
         leading: const BackButton(
           color: Colors.white,
         ),
-        backgroundColor: _colorRedPp,
+        // backgroundColor: _colorRedPp,
         title: const Text(
           "Recuperar contraseña",
           style: TextStyle(
@@ -38,42 +40,33 @@ class _ForgotpwdPageState extends State<ForgotpwdPage> {
                 height: 30,
               ),
               SizedBox(
-                  width: 150,
-                  height: 150,
-                  child: Image.asset('assets/images/logo_alterno.png')),
+                width: 150,
+                height: 150,
+                child: Image.asset('assets/images/logo_alterno.png'),
+              ),
+              const SizedBox(
+                height: 25.0,
+              ),
               Column(
+                //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const SizedBox(
-                    height: 80,
-                    child: Padding(
-                      padding:
-                          EdgeInsets.only(top: 20.0, left: 25.0, right: 25.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          // Icon(
-                          //   Icons.email_outlined,
-                          //   color: Color.fromARGB(255, 34, 34, 34),
-                          //   size: 30.0,
-                          // ),
-                          Text(
-                            "Ingrese su correo corporativo, le estaremos\nenviando los datos de acceso.",
-                            maxLines: 3,
-                            softWrap: true,
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 131, 15, 15),
-                                fontSize: 16,
-                                fontFamily: "Nunito",
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ],
+                  Center(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: const Text(
+                        "Ingresa tu correo y te enviaremos instrucciones para reiniciar tu contraseña.",
+                        maxLines: 3,
+                        softWrap: true,
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Nunito",
+                            fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
                   const SizedBox(
-                    height: 5,
-                  ), // User NAme
+                    height: 20.0,
+                  ),
                   // Password
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -83,7 +76,7 @@ class _ForgotpwdPageState extends State<ForgotpwdPage> {
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(25.0))),
+                                BorderRadius.all(Radius.circular(35.0))),
                         labelText: 'E-mail',
                       ),
                     ),
@@ -92,22 +85,32 @@ class _ForgotpwdPageState extends State<ForgotpwdPage> {
                     height: 25,
                   ),
                   // Forgot Password
-                  SizedBox(
+                  Container(
+                    width: double.infinity,
                     height: 45.0,
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: ElevatedButton.icon(
                       style: ButtonStyle(
                         elevation: MaterialStateProperty.all(5),
                       ),
                       icon: const Icon(Icons.account_circle_outlined),
                       label: const Text(
-                        "Recuperar contraseña",
+                        "Restablecer contraseña",
                         style: TextStyle(
-                          fontSize: 18.0,
+                          fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                           fontFamily: "Nunito",
+                          color: Colors.white,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RevisarCorreoPage(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                   const SizedBox(

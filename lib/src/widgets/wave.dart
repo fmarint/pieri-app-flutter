@@ -16,20 +16,6 @@ class Wave extends StatefulWidget {
   _WaveState createState() => _WaveState();
 }
 
-// class Bird extends StatefulWidget {
-//   const Bird({
-//     super.key,
-//     this.color = const Color(0xFFFFE306),
-//     this.child,
-//   });
-
-//   final Color color;
-//   final Widget? child;
-
-//   @override
-//   State<Bird> createState() => _BirdState();
-// }
-
 class _WaveState extends State<Wave> {
 
   // final Color _colorRedPp = const Color.fromARGB(255, 173, 20, 56);
@@ -42,7 +28,7 @@ class _WaveState extends State<Wave> {
         ClipPath(
           clipper: WaveClipper(),
           child: Container(
-            color: Color.fromARGB(19, 103, 190, 155),
+            color: Color.fromARGB(255, 211, 235, 219),
             height: widget.heightSecondary ,
           ),
         ),

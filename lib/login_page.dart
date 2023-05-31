@@ -1,10 +1,9 @@
 // ignore_for_file: sort_child_properties_last
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:pieri_app/forgotpwd_page.dart';
 import 'package:pieri_app/home_page.dart';
 import 'package:http/http.dart' as http;
-// import 'package:pieri_app/src/widgets/WaveClipper.dart';
+import 'package:pieri_app/recuperarcontrasena_page.dart';
 import 'package:pieri_app/src/widgets/wave.dart';
 
 class LoginPage extends StatefulWidget {
@@ -28,10 +27,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const PreferredSize(
-        child: Wave(heightPrimary: 100.0,heightSecondary: 130.0),
+        child: Wave(heightPrimary: 100.0, heightSecondary: 130.0),
         preferredSize: Size.fromHeight(300),
       ),
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           reverse: true,
@@ -44,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 125.0,
                     child: Stack(
                       children: [
@@ -54,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             "Hola!",
                             style: TextStyle(
-                                color: _colorRedPp,
+                                // color: _colorRedPp,
                                 fontSize: 24.0,
                                 fontWeight: FontWeight.w900,
                                 fontFamily: "RobotoMono"),
@@ -66,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             "  Ingrese sus datos para iniciar sesion.",
                             style: TextStyle(
-                                color: _colorRedPp,
+                                // color: _colorRedPp,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                                 fontFamily: "Nunito"),
@@ -126,17 +125,27 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 25),
                   SizedBox(
                     height: 45.0,
-                    child: ElevatedButton.icon(
-                      style: ButtonStyle(
-                        elevation: MaterialStateProperty.all(5),
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: ElevatedButton.icon(
+                        style: ButtonStyle(
+                          elevation: MaterialStateProperty.all(5),
+                        ),
+                        icon: const Icon(
+                          Icons.login,
+                          color: Colors.white,
+                        ),
+                        label: const Text(
+                          "Iniciar sesion",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        onPressed: _onTapIngresar,
                       ),
-                      icon: const Icon(Icons.login),
-                      label: const Text(
-                        "INGRESAR",
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                      onPressed: _onTapIngresar,
                     ),
                   ),
                   const SizedBox(
@@ -149,20 +158,20 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ForgotpwdPage(),
+                          builder: (context) => const RecuperarContrasenaPage(),
                         ),
                       );
                     },
                     child: const Text(
                       "Olvide mi contraseña?",
                       style: TextStyle(
-                          color: Color.fromARGB(255, 10, 117, 205),
+                          // color: _colorRedPp,
                           fontFamily: "Nunito",
                           fontWeight: FontWeight.bold),
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 80,
                   ),
                 ],
               ),
@@ -192,22 +201,34 @@ class _LoginPageState extends State<LoginPage> {
     final response = await http.get(Uri.parse("${_urlBase}componentes"));
     final data = json.decode(response.body);
 
-    final String userName = (data[0]["username"]);
-    final String password = (data[0]["password"]);
+    List user = data
+        .where((o) =>
+            o['username'] == _userController.text &&
+            o['password'] == _passwordController.text)
+        .toList();
+    print(user);
+    // var result = data.firstWhere((item) => item['username'] == _userController.text );
 
-    if (_userController.text == userName &&
-        _passwordController.text == password) {
+    // final String userName = (user[0]["username"]);
+    // final String password = (user[0]["password"]);
+
+    if ( user.length > 0) {
+    final String userName = (user[0]["username"]);
+
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const HomePage(),
+          builder: (context) =>  HomePage(userName: userName, ),
         ),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: const Text("Datos incorrectos,favor de validar!"),
-          backgroundColor: _colorRedPp,
+          content: Text(
+            "Datos incorrectos,favor de validar!",
+            style: TextStyle(color: Colors.white,),
+          ),
+          // backgroundColor: _colorRedPp,
         ),
       );
     }
